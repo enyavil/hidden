@@ -1,0 +1,18 @@
+clear;clc;
+
+Fs = 44100;
+beat = 60/160;   %seconds
+freq = zip1;
+b = zip2;
+f = 440*2.^(freq./12);
+A = 5;
+M = [];
+for i = 1:size(freq,2)
+    t = linspace(0,b(i)*beat,Fs*b(i)*beat);
+    if f(i) ~= -Inf
+        M = [M A*cos(2*pi*t*f(i))];
+    else
+        M = [M 0*t];
+    end
+end
+sound(M,Fs)
